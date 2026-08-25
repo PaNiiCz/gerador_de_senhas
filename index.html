@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Gerador de senhas fortes com design luminoso e interativo">
+    <title>Password Generator</title>
+    
+    <link rel="stylesheet" href="css/style.css">
+    
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23ffffff'><path d='M12 2C9.79086 2 8 3.79086 8 6V8H6C4.89543 8 4 8.89543 4 10V20C4 21.1046 4.89543 22 6 22H18C19.1046 22 20 21.1046 20 20V10C20 8.89543 19.1046 8 18 8H16V6C16 3.79086 14.2091 2 12 2ZM12 4C13.1046 4 14 4.89543 14 6V8H10V6C10 4.89543 10.8954 4 12 4ZM12 15C13.1046 15 14 15.8954 14 17C14 18.1046 13.1046 19 12 19C10.8954 19 10 18.1046 10 17C10 15.8954 10.8954 15 12 15Z'/></svg>">
+</head>
+<body>
+    
+    <div class="card">
+        <div class="content">
+            <!-- Ícone -->
+            <div class="icon">
+                <svg xmlns="http://www.w3.org/2000/svg" width="3.2rem" height="3.2rem" viewBox="0 0 24 24" fill="none">
+                    <path d="M12 2C9.79086 2 8 3.79086 8 6V8H6C4.89543 8 4 8.89543 4 10V20C4 21.1046 4.89543 22 6 22H18C19.1046 22 20 21.1046 20 20V10C20 8.89543 19.1046 8 18 8H16V6C16 3.79086 14.2091 2 12 2ZM12 4C13.1046 4 14 4.89543 14 6V8H10V6C10 4.89543 10.8954 4 12 4ZM12 15C13.1046 15 14 15.8954 14 17C14 18.1046 13.1046 19 12 19C10.8954 19 10 18.1046 10 17C10 15.8954 10.8954 15 12 15Z" fill="url(#iconGradient)" filter="url(#strong-inner)"/>
+                    <defs>
+                        <linearGradient id="iconGradient" x1="0" x2="0" y1="-1" y2="0.8">
+                            <stop offset="0%" stop-color="#bbb" />
+                            <stop offset="100%" stop-color="#555" />
+                        </linearGradient>
+                        <filter id="strong-inner">
+                            <feFlood flood-color="#fff2" />
+                            <feComposite operator="out" in2="SourceGraphic" />
+                            <feMorphology operator="dilate" radius="8" />
+                            <feGaussianBlur stdDeviation="32" />
+                            <feComposite operator="atop" in2="SourceGraphic" />
+                        </filter>
+                    </defs>
+                </svg>
+            </div>
+            
+            <div class="bottom">
+                <h4>Password Generator</h4>
+                
+                <!-- DISPLAY DA SENHA -->
+                <div class="password-display" id="passwordDisplay">
+                    <span id="passwordText">Clique em Gerar</span>
+                </div>
+                
+                <!-- CONTROLES -->
+                <div class="controls">
+                    <!-- Slider -->
+                    <div class="slider-container">
+                        <label>Comprimento: <span id="lengthLabel">16</span></label>
+                        <input type="range" id="lengthSlider" min="8" max="32" value="16">
+                    </div>
+                    
+                    <!-- Checkboxes -->
+                    <div class="options">
+                        <label class="checkbox-label">
+                            <input type="checkbox" id="uppercase" checked> A-Z
+                        </label>
+                        <label class="checkbox-label">
+                            <input type="checkbox" id="lowercase" checked> a-z
+                        </label>
+                        <label class="checkbox-label">
+                            <input type="checkbox" id="numbers" checked> 0-9
+                        </label>
+                        <label class="checkbox-label">
+                            <input type="checkbox" id="symbols" checked> !@#
+                        </label>
+                    </div>
+                    
+                    <!-- Botões -->
+                    <div class="button-group">
+                        <button id="generateBtn">✦ Gerar</button>
+                        <button id="copyBtn">📋 Copiar</button>
+                    </div>
+                    
+                    <!-- Força - ATENÇÃO: apenas UM bloco de força -->
+                    <div class="strength-container">
+                        <span>Força:</span>
+                        <div class="strength-bar">
+                            <div class="strength-fill" id="strengthFill"></div>
+                        </div>
+                        <span id="strengthLabel">Média</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script src="js/script.js"></script>
+    
+</body>
+</html>

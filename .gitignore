@@ -1,0 +1,30 @@
+## 📄 **.gitignore** (mantido)
+
+```gitignore
+# Arquivos do sistema
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Editores
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Logs
+*.log
+npm-debug.log*
+
+# Dependências
+node_modules/
+package-lock.json
+
+# Arquivos temporários
+*.tmp
+*.temp
+*.screenshot.png
+
+# IDE
+.vscode/
+.idea/
