@@ -1,0 +1,44 @@
+{
+  "name": "luminous-vault",
+  "version": "1.0.0",
+  "description": "Gerador e cofre de senhas local",
+  "main": "main.js",
+  "author": "Rhuan Garcia",
+  "scripts": {
+    "start": "electron .",
+    "dist": "electron-builder --win nsis"
+  },
+  "build": {
+    "appId": "com.rhuan.luminousvault",
+    "productName": "Luminous Vault",
+    "files": [
+      "main.js",
+      "preload.js",
+      "index.html",
+      "css/**/*",
+      "js/**/*"
+    ],
+    "win": {
+      "target": "nsis"
+    },
+    "nsis": {
+      "oneClick": true,
+      "perMachine": false
+    }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/PaNiiCz/gerador_de_senhas.git"
+  },
+  "keywords": [],
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/PaNiiCz/gerador_de_senhas/issues"
+  },
+  "homepage": "https://github.com/PaNiiCz/gerador_de_senhas#readme",
+  "devDependencies": {
+    "electron": "^44.8.0",
+    "electron-builder": "^26.15.3"
+  }
+}

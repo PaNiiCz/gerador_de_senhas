@@ -38,14 +38,24 @@ let generationId = 0;
 // ============================================
 // FUNÇÕES AUXILIARES
 // ============================================
+// Número aleatório SEGURO (sem viés) usando o gerador criptográfico do navegador
+function secureInt(max) {
+    const limit = Math.floor(0x100000000 / max) * max;
+    const buf = new Uint32Array(1);
+    do {
+        crypto.getRandomValues(buf);
+    } while (buf[0] >= limit);
+    return buf[0] % max;
+}
+
 function getRandomChar(str) {
-    return str[Math.floor(Math.random() * str.length)];
+    return str[secureInt(str.length)];
 }
 
 function shuffleString(str) {
     const arr = str.split('');
     for (let i = arr.length - 1; i > 0; i--) {
-        const j = Math.floor(Math.random() * (i + 1));
+        const j = secureInt(i + 1);
         [arr[i], arr[j]] = [arr[j], arr[i]];
     }
     return arr.join('');
@@ -109,7 +119,7 @@ function generatePassword() {
     if (useSymbols) password += getRandomChar(CHARS.symbols);
     
     for (let i = password.length; i < length; i++) {
-        password += pool[Math.floor(Math.random() * pool.length)];
+            password += pool[secureInt(pool.length)];
     }
     
     password = shuffleString(password);
@@ -210,6 +220,7 @@ async function copyPassword() {
     
     try {
         await navigator.clipboard.writeText(text);
+        if (typeof scheduleClipboardClear === 'function') scheduleClipboardClear();
         elements.copyBtn.textContent = '✓ Copiado!';
         elements.copyBtn.style.borderColor = 'rgba(68, 255, 136, 0.3)';
         setTimeout(() => {
@@ -266,7 +277,8 @@ document.querySelectorAll('.options input').forEach(checkbox => {
 // SHORTCUTS
 // ============================================
 document.addEventListener('keydown', (e) => {
-    if (e.key === 'Enter' && e.target.tagName !== 'INPUT') {
+    const genView = document.getElementById('view-generator');
+    if (e.key === 'Enter' && e.target.tagName !== 'INPUT' && genView && !genView.hidden) {
         e.preventDefault();
         if (!elements.generateBtn.disabled) {
             elements.generateBtn.click();

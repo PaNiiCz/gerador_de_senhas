@@ -1,6 +1,3 @@
-## 📄 **.gitignore** (mantido)
-
-```gitignore
 # Arquivos do sistema
 .DS_Store
 Thumbs.db
@@ -18,13 +15,16 @@ npm-debug.log*
 
 # Dependências
 node_modules/
-package-lock.json
 
-# Arquivos temporários
+# Build do Electron (instalador vai em Releases, não no código)
+dist/
+
+# Cofre e backups: NUNCA subir para o GitHub
+cofre*.json
+cofre*.bak
+cofre-backup-*.json
+
+# Temporários
 *.tmp
 *.temp
 *.screenshot.png
-
-# IDE
-.vscode/
-.idea/
